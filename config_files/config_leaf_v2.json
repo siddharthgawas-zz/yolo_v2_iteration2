@@ -1,0 +1,30 @@
+{
+    "CLUSTERING_PARAMS": {
+        "K": 5,
+        "ERROR_THRESHOLD": 1e-6,
+        "MAX_ITERATION": 1000
+    },
+
+    "YOLO_PARAMS": {
+        "IMAGE_H": 346, 
+        
+        "IMAGE_W": 346,
+        
+        "GRID_SIZE": 13,
+        
+        "BATCH_SIZE": 1,
+        
+        "ANCHORS":[0.44752974, 0.51667883, 0.17638203, 0.16553482, 0.076274  ,
+       0.10540195, 0.10295663, 0.23137522, 0.24225889, 0.3452266 ],
+        
+        "LAMBDA_COORD": 5.0,
+        
+        "LAMBDA_NOOBJ": 0.5,
+        
+        "LEAKY_RELU_ALPHA": 0.1,
+        
+        "LEARNING_RATE": 0.0001,
+
+        "CLASS_LABELS": ["infected:", "not_infected"]
+    }
+}

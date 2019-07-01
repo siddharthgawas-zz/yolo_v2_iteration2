@@ -1,0 +1,6 @@
+data/
+trained_weights/
+.ipynb_checkpoints/
+__pycache__/
+.idea/
+test_images/

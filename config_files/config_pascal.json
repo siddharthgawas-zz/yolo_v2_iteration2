@@ -1,0 +1,52 @@
+{
+    "CLUSTERING_PARAMS": {
+        "K": 5,
+        "ERROR_THRESHOLD": 1e-6,
+        "MAX_ITERATION": 1000
+    },
+
+    "YOLO_PARAMS": {
+        "IMAGE_H": 346, 
+        
+        "IMAGE_W": 346,
+        
+        "GRID_SIZE": 13,
+        
+        "BATCH_SIZE": 10,
+        
+        "ANCHORS":  [0.07886866, 0.13835091,
+        0.78816965, 0.72463063,
+        0.35036098, 0.21054154,
+        0.40543876, 0.62382898,
+        0.1746729,  0.41106983],
+        
+        "LAMBDA_COORD": 1.0,
+        
+        "LAMBDA_NOOBJ": 1.0,
+        
+        "LEAKY_RELU_ALPHA": 0.1,
+        
+        "LEARNING_RATE": 0.0001,
+
+        "CLASS_LABELS": {"chair": 0,
+            "tvmonitor": 1,
+            "person": 2,
+            "car": 3,
+            "bicycle": 4,
+            "sheep": 5,
+            "bird": 6,
+            "motorbike": 7,
+            "cow": 8,
+            "bus": 9,
+            "dog": 10,
+            "sofa": 11,
+            "boat": 12,
+            "horse": 13,
+            "pottedplant":14,
+            "diningtable": 15,
+            "cat": 16,
+            "aeroplane": 17,
+            "bottle": 18,
+            "train": 19}
+    }
+}
