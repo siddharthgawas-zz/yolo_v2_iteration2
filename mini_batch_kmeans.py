@@ -16,7 +16,9 @@ class MiniBatchKMeans:
         self.cluster_vectors = np.random.uniform(size=(self.k,2))
         
     def train(self,data,iteration_hist=True):
-        
+        min = data.min()
+        max = data.max()
+        self.cluster_vectors = np.random.uniform(low=min,high=max,size=(self.k,2))
         if data.shape[0] < self.mini_batch_size:
             batch_size = data.shape[0]
         else:

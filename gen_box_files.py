@@ -20,8 +20,9 @@ image_h = 346
 image_w = 346
 m_grid = 13
 n_grid = 13
-anchor_dim = (0.44752974, 0.51667883, 0.17638203, 0.16553482, 0.076274  ,
-       0.10540195, 0.10295663, 0.23137522, 0.24225889, 0.3452266 )
+anchor_dim = [0.17418965, 0.24217035,
+        0.08529647, 0.12489262,
+        0.3669517,  0.45720006]
 n_anchors = int(len(anchor_dim) / 2)
 class_labels = ['infected','not_infected']
 n_classes = len(class_labels)
@@ -31,7 +32,7 @@ n_classes = len(class_labels)
 model = get_pre_trained_model_vgg16(image_w,image_h,m_grid,n_grid
                                     ,n_anchors,n_classes,1,anchor_dim)
 
-model.load_weights('trained_weights/leaf_data_v2/yolo_net_epoch_102.h5')
+model.load_weights('trained_weights/leaf_data_v2/model_weights_16_leaf_v2.h5')
 model.summary()
 #%%
 def predict(x,max_boxes,iou_thresh,obj_thresh,dataset: Dataset):

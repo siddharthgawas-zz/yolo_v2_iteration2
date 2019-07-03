@@ -1702,11 +1702,11 @@ def get_pre_trained_model_vgg16( image_w,image_h,
                                               input_tensor=input)
 
     layer = model.layers[-2].output
-    layer = tf.keras.layers.Conv2D(512,(3,3),strides=(1,1),padding='valid',activation='relu')(layer)
-    layer = tf.keras.layers.Conv2D(512,(3,3),strides=(1,1),padding='valid',activation='relu')(layer)
     layer = tf.keras.layers.Conv2D(256,(3,3),strides=(1,1),padding='valid',activation='relu')(layer)
     layer = tf.keras.layers.Conv2D(256,(3,3),strides=(1,1),padding='valid',activation='relu')(layer)
-    layer = tf.keras.layers.Conv2D(128,(1,1),strides=(1,1),padding='valid',activation='relu')(layer)
+    layer = tf.keras.layers.Conv2D(256,(3,3),strides=(1,1),padding='valid',activation='relu')(layer)
+    layer = tf.keras.layers.Conv2D(256,(3,3),strides=(1,1),padding='valid',activation='relu')(layer)
+    layer = tf.keras.layers.Conv2D(256,(1,1),strides=(1,1),padding='valid',activation='relu')(layer)
     layer = tf.keras.layers.Conv2D(n_anchors*(5+n_classes),(1,1),strides=(1,1),padding='valid')(layer)
     layer = tf.keras.layers.Reshape((m_grid,n_grid,n_anchors,5+n_classes))(layer)
     yolo_out_layer = YoloOutputLayer(m_grid,
