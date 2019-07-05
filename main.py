@@ -58,7 +58,7 @@ def load_model():
                                        IMAGE_H,
                                        GRID_SIZE,GRID_SIZE,N_ANCHORS,
                                        N_CLASSES,1,ANCHORS)
-	model.load_weights('trained_weights/leaf_data_v2/yolo_net_epoch_102.h5')
+	model.load_weights('trained_weights/leaf_data_v2/model_weights_16_leaf_v2.h5')
 	model._make_predict_function()
 	model.summary()
 
@@ -98,12 +98,16 @@ def predict():
 			# of predictions to return to the client
 			y_pred = model.predict(image)
 			y_pred_1 = y_pred[0]
-			y_pred_1 = non_max_suppression(np.reshape(y_pred_1, (GRID_SIZE * GRID_SIZE * N_ANCHORS, 5 + N_CLASSES)), 0.4,
-                                       0.2)
+			y_pred_1 = np.reshape(y_pred_1, (GRID_SIZE * GRID_SIZE * N_ANCHORS, 5 + N_CLASSES))
+			for i in range(y_pred_1.shape[0]):
+				y_pred_1[i,0:4] = util.cvt_coord_to_diagonal(y_pred_1[i,0:4])
+			
+			y_pred_1 = non_max_suppression(y_pred_1, 0.5, 0.3)
 			result = []
 			for i in range(y_pred_1.shape[0]):
 				box = y_pred_1[i,0:4]
-				box = np.array(util.cvt_coord_to_diagonal(box)).reshape(-1,2)
+				box = box.reshape(-1,2)
+				box = np.clip(box,a_min=0,a_max=1.0)
 				box[:,0] = original_w*box[:,0]
 				box[:,1] = original_h*box[:,1] 
 				box = box.reshape(-1)

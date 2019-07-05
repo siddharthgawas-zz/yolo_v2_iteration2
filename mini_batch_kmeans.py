@@ -15,8 +15,10 @@ class MiniBatchKMeans:
         #Initialize clusters
         self.cluster_vectors = np.random.uniform(size=(self.k,2))
         
-    def train(self,data):
-        
+    def train(self,data,iteration_hist=True):
+        min = data.min()
+        max = data.max()
+        self.cluster_vectors = np.random.uniform(low=min,high=max,size=(self.k,2))
         if data.shape[0] < self.mini_batch_size:
             batch_size = data.shape[0]
         else:
@@ -75,7 +77,8 @@ class MiniBatchKMeans:
             avg_iou = avg_iou / batch_size
             iteration+=1
             
-            print('Iteration {}, AvgError: {}, AvgIou: {}'.format(iteration,
+            if iteration_hist:
+                print('Iteration {}, AvgError: {}, AvgIou: {}'.format(iteration,
                   avg_dist,avg_iou))
             
         self.cluster_vectors = clusters[:,0,2:4]
